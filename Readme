@@ -1,1 +1,22 @@
-readme
+# Step 1: Read the R script file and display its content
+file_content <- readLines("exercises/import.R")
+
+# Display the content of the file (optional)
+cat(file_content, sep = "\n")
+
+# Step 2: Execute each line of code one by one
+for (line in file_content) {
+  # Trim whitespace from the line
+  clean_line <- trimws(line)
+  
+  # Check if the line is not empty and is not a comment (ignoring lines starting with '#')
+  if (nzchar(clean_line) && !grepl("^#", clean_line)) {
+    # Parse and evaluate the line
+    eval(parse(text = clean_line))
+  }
+}
+
+# Step 3: Option to source the entire file at once if desired
+# If you want to execute the entire script at once, you can uncomment the following line:
+# source("exercises/import.R")
+
